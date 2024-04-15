@@ -7,17 +7,15 @@ import {readFileSync} from 'node:fs';
 const port = 8002;
 const server = http.createServer();
 
-server.on('request', (_request, res) => {
-
-    if(_request.url === '/styles.css') {
-        res.writeHead(200, {"Content-Type": "text/css"});
-        res.write(readFileSync('./static/styles.css', 'utf8'));
-        res.end();
-        return;
-    }
-    if(_request.url === '/script.js') {
-        res.writeHead(200, {"Content-Type": "text/javascript"});
-        res.write(readFileSync('./static/script.js', 'utf8'));
+server.on('request', (request, res) => {
+    if(['.js', '.css'].some(ext => request.includes(ext))) {
+        res.writeHead(200, {
+            "Content-Type": {
+                '.js': 'text/javascript',
+                '.css': 'text/css'
+            }[request.url.slice(request.url.lastIndexOf('.'))]
+        });
+        res.write(readFileSync('./static' + request.url , 'utf8'));
         res.end();
         return;
     }

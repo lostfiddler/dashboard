@@ -1,0 +1,8 @@
+{
+    memory: {
+        used: 0,
+        available: 0,
+        cached: 0,
+        free: 0
+    }
+}

@@ -23,6 +23,20 @@ export default (props) => {
         return;
     }
 
+    if(request.url === '/memory') {
+        const data = readFileSync('/proc/meminfo')
+        res.write(data)
+        res.end()
+        return;
+    }
+
+    if(request.url === '/ports') {
+        const data = readFileSync('/home/ian/ports/ports.txt')
+        res.write(data)
+        res.end()
+        return;
+    }
+
     res.writeHead(200);
     res.write(readFileSync('./static/index.html', 'utf8'));
     res.end();

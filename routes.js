@@ -3,11 +3,12 @@ import initData from './initData.js';
 
 export default (props) => {
     const { request, res } = props;
-    if(['.js', '.css'].some(ext => request.url.includes(ext))) {
+    if(['.js', '.css', '.ttf'].some(ext => request.url.includes(ext))) {
         res.writeHead(200, {
             "Content-Type": {
                 '.js': 'text/javascript',
-                '.css': 'text/css'
+                '.css': 'text/css',
+                '.ttf': 'font/ttf'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         });
         res.write(readFileSync('./static' + request.url , 'utf8'));

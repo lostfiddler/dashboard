@@ -1,0 +1,9 @@
+[Unit]
+Description=my personal admin web application
+
+[Service]
+WorkingDirectory=/home/ian/admin_panel
+ExecStart=/usr/bin/node --watch /home/ian/admin_panel/server/server.js
+
+[Install]
+WantedBy=multi-user.target

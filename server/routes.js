@@ -1,28 +1,21 @@
 import {readFileSync} from 'node:fs';
-import initData from './initData.js';
 
 export default (props) => {
     const { request, res } = props;
-    if(['.js', '.css', '.ttf'].some(ext => request.url.includes(ext))) {
+    if(['.js', '.css', '.ttf', '.svg', '.png'].some(ext => request.url.includes(ext))) {
         res.writeHead(200, {
             "Content-Type": {
                 '.js': 'text/javascript',
                 '.css': 'text/css',
-                '.ttf': 'font/ttf'
+                '.ttf': 'font/ttf',
+                '.svg': 'image/svg+xml',
+                '.png': 'image/png'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         });
-        res.write(readFileSync('./static' + request.url , 'utf8'));
+        res.write(readFileSync('./frontEnd' + request.url));
         res.end();
         return;
     }     
-
-    if(request.url === '/data') {
-        const data = initData()
-        res.writeHead(200, {"Content-Type": 'application/json'})
-        res.write(JSON.stringify(data));
-        res.end()
-        return;
-    }
 
     if(request.url === '/memory') {
         const data = readFileSync('/proc/meminfo')
@@ -39,6 +32,6 @@ export default (props) => {
     }
 
     res.writeHead(200);
-    res.write(readFileSync('./static/index.html', 'utf8'));
+    res.write(readFileSync('./frontEnd/index.html', 'utf8'));
     res.end();
 }

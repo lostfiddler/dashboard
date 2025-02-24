@@ -22,5 +22,8 @@ function calcUsed() {
 
 export function display() {
     const memoryHTMLElement = document.querySelector('#memory')
-    memoryHTMLElement.textContent = `Total: ${memory.MemTotal} Used: ${calcUsed()} Free: ${memory.MemFree}`
+    memoryHTMLElement.innerText = `Total: ${memory.MemTotal}
+    Used: ${calcUsed()}
+    Cached: ${memory.Cached}
+    Free: ${memory.MemFree}`
 }

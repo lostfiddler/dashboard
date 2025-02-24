@@ -22,6 +22,18 @@ class Favorites extends HTMLElement {
                         src='images/netflix_white.png'
                         width=100></a>
                 </li>
+                <li>
+                    <a href="https://aniwatchtv.to"><img
+                        src='images/aniwatch.png' width=100></a>
+                </li>
+                <li>
+                    <a href="http://192.168.1.231:9000"><img
+                        src='images/calibre.png' width=100></a>
+                </li>
+                <li>
+                    <a href="http://192.168.1.231:13378"><img
+                        src='images/audiobookshelf.png' width=100></a>
+                </li>
             </ul>
         `;
     }

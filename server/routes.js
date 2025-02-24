@@ -12,7 +12,7 @@ export default (props) => {
                 '.png': 'image/png'
             }[request.url.slice(request.url.lastIndexOf('.'))]
         });
-        res.write(readFileSync('./frontEnd' + request.url));
+        res.write(readFileSync('../frontEnd' + request.url));
         res.end();
         return;
     }     
@@ -32,6 +32,6 @@ export default (props) => {
     }
 
     res.writeHead(200);
-    res.write(readFileSync('./frontEnd/index.html', 'utf8'));
+    res.write(readFileSync('../frontEnd/index.html', 'utf8'));
     res.end();
 }
